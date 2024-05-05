@@ -1,0 +1,40 @@
+footer {
+    display: flex;
+    flex-direction: column;
+    padding: 154px 134px 50px;
+    background: rgb(188, 221, 254);
+
+    .footer__wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+
+            img {
+                width: 135px;
+            }
+
+            .icons {
+                display: flex;
+                align-items: center;
+                color: blue;
+                gap: 30px;
+            }
+        }
+    }
+
+    .footer__links {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-top: 100px;
+    }
+
+    hr {
+        height: 3px;
+        background-color: white;
+    }
+}
