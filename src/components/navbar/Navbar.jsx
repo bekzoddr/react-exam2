@@ -8,13 +8,13 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import { NavLink } from "react-router-dom";
 import Subnav from "../subNav/Subnav";
+import { useSelector } from "react-redux";
 import navLogo from "../../assets/images/nav__logo.svg";
-
-const pages = ["Products", "Pricing", "Blog"];
 
 function Navbar() {
   const [isSticky, setIsSticky] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const wishes = useSelector((state) => state.wishlist.value);
 
   const handleScroll = () => {
     if (window.pageYOffset > 0) {

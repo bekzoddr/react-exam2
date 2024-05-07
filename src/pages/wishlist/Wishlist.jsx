@@ -9,10 +9,11 @@ const Wishlist = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
-      .get("products")
+      .get("/products")
       .then((res) => setData(res.data.products))
       .catch((err) => console.log(err));
   }, []);
+
   return (
     <div
       style={{
@@ -24,9 +25,19 @@ const Wishlist = () => {
         marginBottom: "30px",
       }}
     >
-      <Products data={wishes} />
+      {wishes.length ? (
+        <Products
+          // title="Wishlist"
+          // button="Move All To Bag"
+          // time="Favourite"
+          data={wishes}
+        />
+      ) : (
+        <h2>empty</h2>
+      )}
+      {/* <Product button="See all" time="Just For You" data={data} /> */}
     </div>
   );
 };
 
-export default Wishlist;
+export default memo(Wishlist);

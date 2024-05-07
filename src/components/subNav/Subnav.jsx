@@ -3,8 +3,11 @@ import { BsPerson, BsCart2, BsSearch } from "react-icons/bs";
 import { FaRegHeart } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import { FiChevronDown } from "react-icons/fi";
+import { useSelector } from "react-redux";
 import { Container } from "@mui/material";
+
 const Subnav = () => {
+  const wishes = useSelector((state) => state.wishlist.value);
   return (
     <Container maxWidth="xl">
       <div className="sub__nav container">
@@ -22,6 +25,13 @@ const Subnav = () => {
           </NavLink>
           <NavLink to={"/wishlist"}>
             <FaRegHeart className="icon" />
+            {wishes.length > 0 ? (
+              <sub>
+                <p>{wishes.length}</p>
+              </sub>
+            ) : (
+              <></>
+            )}
           </NavLink>
           <NavLink to={""}>
             {" "}

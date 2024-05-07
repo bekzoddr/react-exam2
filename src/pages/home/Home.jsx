@@ -14,7 +14,7 @@ const Home = () => {
   return (
     <div>
       <Hero />
-      <Products title="Best Seller" data={data} />
+      <Products data={data} />
     </div>
   );
 };

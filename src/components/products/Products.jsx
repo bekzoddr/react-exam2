@@ -1,11 +1,12 @@
 import React, { memo } from "react";
 import { FaRegHeart, FaRegEye, FaHeart, FaStar } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { GrCart } from "react-icons/gr";
 import Loading from "../loading/Loading";
 import { Container } from "@mui/material";
 import { MdOutlineStar } from "react-icons/md";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleToWishes } from "../../context/wishlistSlice";
 const Product = ({ data, title }) => {
   const dispatch = useDispatch();
   const wishes = useSelector((state) => state.wishlist.value);
