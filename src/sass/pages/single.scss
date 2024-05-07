@@ -247,13 +247,14 @@
     overflow-x: auto;
     white-space: nowrap;
     overflow: hidden;
-   width: 100%;
-   flex: nowrap;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1 !important;
 }
 body{
     overflow-x: hidden;
 }
-.product__data, .productImages, .products{
+.product__data, .productImages, .products.single{
     position: relative;
     right: 140px;
     width: 100vw;

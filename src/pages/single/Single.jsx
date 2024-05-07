@@ -214,7 +214,7 @@ export default function SingleRoute() {
             </button>
           </div>
         </div>
-        <div className="products">
+        <div className="products single">
           <div className="card">
             <div className="image-container">
               <img
