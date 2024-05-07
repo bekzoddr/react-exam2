@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Hero from "../../components/hero/Hero";
 import axios from "../../api";
-
 import Products from "../../components/products/Products";
 const Home = () => {
   const [data, setData] = useState([]);

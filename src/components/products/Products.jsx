@@ -1,28 +1,22 @@
 import React, { memo } from "react";
+import { FaRegHeart, FaRegEye, FaHeart, FaStar } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleToWishes } from "../../context/wishlistSlice";
-import { GrCart } from "react-icons/gr";
-import { MdOutlineStar } from "react-icons/md";
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import Loading from "../loading/Loading";
 import { Link } from "react-router-dom";
-import { useGetProductQuery } from "../../context/productApi";
-function Products({ title }) {
+import { GrCart } from "react-icons/gr";
+import Loading from "../loading/Loading";
+import { Container } from "@mui/material";
+import { MdOutlineStar } from "react-icons/md";
+const Product = ({ data, title }) => {
   const dispatch = useDispatch();
   const wishes = useSelector((state) => state.wishlist.value);
   const cart = useSelector((state) => state.cart.value);
-  const { data } = useGetProductQuery();
   if (!data) {
     return <Loading />;
   }
-  const products = data?.map((el) => (
+  let products = data?.map((el) => (
     <div key={el.id} className="card">
       <div className="image-container">
-        <img
-          src={`https://picsum.photos/200?id=${el.id}`}
-          alt="Product"
-          className="image"
-        />
+        <img src={el.thumbnail} alt="Product" className="image" />
         <div className="navigation">
           <button onClick={() => dispatch(toggleToWishes(el))}>
             {wishes.some((w) => w.id === el.id) ? (
@@ -38,7 +32,6 @@ function Products({ title }) {
       </div>
       <div className="card__body">
         <Link to={`/single/${el.id}`}>
-          {" "}
           <h2>{el.title}</h2>
         </Link>
 
@@ -58,9 +51,10 @@ function Products({ title }) {
     </div>
   ));
   return (
-    <>
+    <Container maxWidth="xl">
       <div className="product__title container">
         <h1>{title}</h1>
+        <br />
         <ul>
           <li>All</li>
           <li>Bags</li>
@@ -68,10 +62,11 @@ function Products({ title }) {
           <li>Belt</li>
           <li>Sunglasses</li>
         </ul>
+        <br />
       </div>
       <div className="products container">{products}</div>
-    </>
+    </Container>
   );
-}
+};
 
-export default memo(Products);
+export default memo(Product);

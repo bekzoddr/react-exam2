@@ -28,8 +28,8 @@ function HeroCards() {
     </div>
   ));
   return (
-    <div>
-      <div className="hero__cards container">{heroCard}</div>
+    <div className="container">
+      <div className="hero__cards">{heroCard}</div>
     </div>
   );
 }

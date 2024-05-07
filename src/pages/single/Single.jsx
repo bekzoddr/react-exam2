@@ -1,21 +1,73 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { IoStarSharp } from "react-icons/io5";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "../../api";
-import mainUrl from "../../api";
-import { FaStar } from "react-icons/fa6";
-import { FaRegHeart, FaHeart } from "react-icons/fa";
-import { RiShoppingCart2Line } from "react-icons/ri";
-import Products from "../../components/products/Products";
-import { toggleToWishes } from "../../context/wishlistSlice";
-import { decCart, incCart } from "../../context/cartSlice";
 import Loading from "../../components/loading/Loading";
-import { FaFacebookF, FaTwitter } from "react-icons/fa";
-import { Link } from "react-router-dom";
-function SingleRoute({ data }) {
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Typography from "@mui/material/Typography";
+import Box from "@mui/material/Box";
+import {
+  FaStar,
+  FaRegHeart,
+  FaHeart,
+  FaFacebookF,
+  FaTwitter,
+} from "react-icons/fa";
+import { RiShoppingCart2Line } from "react-icons/ri";
+import { Container } from "@mui/material";
+
+function CustomTabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <Typography>{children}</Typography>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+CustomTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+export default function SingleRoute() {
   const [product, setProduct] = useState(null);
-  const { id } = useParams();
   const [loading, setLoading] = useState(false);
+  const [value, setValue] = useState(0);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+  const handleImageClick = (image, index) => {
+    setSelectedImage(image === product?.thumbnail ? product?.thumbnail : image);
+    setSelectedImageIndex(index);
+  };
+
+  const { id } = useParams();
+
   useEffect(() => {
     window.scrollTo(0, 0);
     setLoading(true);
@@ -29,10 +81,9 @@ function SingleRoute({ data }) {
   if (loading) {
     return <Loading />;
   }
-  const imageSeeds = [1, 2, 3, 4];
 
   return (
-    <>
+    <Container maxWidth="xl">
       <br />
       <br />
       <br />
@@ -47,15 +98,35 @@ function SingleRoute({ data }) {
       <br />
       <div className="single__page containerr">
         <div className="productImages">
-          <img width={375} height={300} src={product?.image} alt="" />
-          <div className="bottom__images">
-            {imageSeeds.map((seed) => (
+          <img
+            width={375}
+            height={300}
+            src={selectedImage || product?.thumbnail}
+            alt=""
+          />
+          <div className="bottom__images default_images">
+            {product?.images.map((image, index) => (
               <img
+                key={index}
+                className={selectedImageIndex === index ? "selected" : ""}
                 width={85}
                 height={85}
-                key={seed}
-                src={`https://picsum.photos/seed/${seed}/350`}
-                alt={`Image ${seed}`}
+                src={image}
+                alt="product-image"
+                onClick={() => handleImageClick(image, index)}
+              />
+            ))}
+          </div>
+          <div className="bottom__images responsive_images">
+            {product?.images.map((image, index) => (
+              <img
+                key={index}
+                className={selectedImageIndex === index ? "selected" : ""}
+                width={85}
+                height={85}
+                src={image}
+                alt="product-image"
+                onClick={() => handleImageClick(image, index)}
               />
             ))}
           </div>
@@ -175,8 +246,39 @@ function SingleRoute({ data }) {
           </div>
         </div>
       </div>
-    </>
+      <br />
+      <br />
+      <br />
+      <Container maxWidth="lg">
+        {" "}
+        <Box sx={{ width: "100%" }}>
+          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+            <Tabs
+              value={value}
+              onChange={handleChange}
+              aria-label="basic tabs example"
+            >
+              <Tab label="Item One" {...a11yProps(0)} />
+              <Tab label="Item Two" {...a11yProps(1)} />
+              <Tab label="Item Three" {...a11yProps(2)} />
+            </Tabs>
+          </Box>
+          <CustomTabPanel value={value} index={0}>
+            {product?.description}
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores
+            aperiam dicta laboriosam inventore modi, eum explicabo totam
+            consequatur aliquid neque culpa autem hic facilis id perspiciatis.
+            Quis dolorum quasi accusamus nostrum? Illum odio sunt obcaecati
+            reiciendis officia exercitationem porro culpa.
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            {product?.description}{" "}
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
+            {product?.description}{" "}
+          </CustomTabPanel>
+        </Box>
+      </Container>
+    </Container>
   );
 }
-
-export default SingleRoute;

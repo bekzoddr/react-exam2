@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const mainUrl = axios.create({
-  baseURL: "https://6634b1d29bb0df2359a2695a.mockapi.io/api/",
+  baseURL: "https://dummyjson.com",
 });
 
 mainUrl.interceptors.request.use((req) => {
