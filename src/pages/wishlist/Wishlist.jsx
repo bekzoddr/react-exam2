@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "../../api";
 import { useSelector } from "react-redux";
 import Products from "../../components/products/Products";
+import EmptyWishlist from "../../components/emptyWishlist/EmptyWishlist";
 const Wishlist = () => {
   const wishes = useSelector((state) => state.wishlist.value);
   const [data, setData] = useState([]);
@@ -26,16 +27,14 @@ const Wishlist = () => {
       }}
     >
       {wishes.length ? (
-        <Products
-          // title="Wishlist"
-          // button="Move All To Bag"
-          // time="Favourite"
-          data={wishes}
-        />
+        <Products title="Wishlist" data={wishes} />
       ) : (
-        <h2>empty</h2>
+        <EmptyWishlist />
       )}
-      {/* <Product button="See all" time="Just For You" data={data} /> */}
+      <br />
+      <br />
+      <br />
+      <Products title="RELATED PRODUCTS" data={data.slice(0, 4)} />
     </div>
   );
 };

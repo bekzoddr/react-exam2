@@ -1,0 +1,46 @@
+section {
+    padding: 12px 0 12px 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: rgb(64, 191, 255);
+    margin-top: 150px;
+
+    img {
+        position: relative;
+        bottom: 100px;
+    }
+
+    .title {
+        h1 {
+            color: rgb(255, 255, 255);
+            font-size: 55px;
+            font-weight: 500;
+            line-height: 83px;
+            letter-spacing: 0%;
+            text-align: left;
+        }
+
+        hr {
+            width: 75px;
+            height: 3px;
+            background-color: aliceblue;
+        }
+
+        h2,
+        h3 {
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+            font-weight: 400;
+            line-height: 36px;
+            letter-spacing: 0%;
+            text-align: left;
+        }
+
+        h3 {
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 30px;
+        }
+    }
+}

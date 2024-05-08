@@ -8,6 +8,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import Products from "../../components/products/Products";
 import {
   FaStar,
   FaRegHeart,
@@ -57,7 +58,13 @@ export default function SingleRoute() {
   const [value, setValue] = useState(0);
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("/products")
+      .then((res) => setData(res.data.products))
+      .catch((err) => console.log(err));
+  }, []);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -279,6 +286,7 @@ export default function SingleRoute() {
           </CustomTabPanel>
         </Box>
       </Container>
+      <Products title="RELATED PRODUCTS" data={data.slice(4, 8)} />
     </Container>
   );
 }

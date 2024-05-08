@@ -60,9 +60,7 @@ function Navbar() {
                 textDecoration: "none",
               }}
             >
-              <NavLink to={"/"}>
-                <img src={navLogo} alt="" />
-              </NavLink>
+              <img src={navLogo} alt="" />
             </Typography>
 
             <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -96,9 +94,7 @@ function Navbar() {
                   textDecoration: "none",
                 }}
               >
-                <NavLink to={"/"}>
-                  <img src={navLogo} alt="" />
-                </NavLink>{" "}
+                <img src={navLogo} alt="" />
               </Typography>
               <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
                 <div className={`nav__links ${isMenuOpen ? "open" : ""}`}>

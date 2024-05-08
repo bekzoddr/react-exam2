@@ -5,9 +5,11 @@ import { NavLink } from "react-router-dom";
 import { FiChevronDown } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import { Container } from "@mui/material";
+import Badge from "@mui/material/Badge";
 
 const Subnav = () => {
   const wishes = useSelector((state) => state.wishlist.value);
+  const carts = useSelector((state) => state.cart.value);
   return (
     <Container maxWidth="xl">
       <div className="sub__nav container">
@@ -20,22 +22,20 @@ const Subnav = () => {
           </h4>
         </div>
         <div className="services">
-          <NavLink to={"/"}>
+          <NavLink to={"/login"}>
             <BsPerson className="icon" />
           </NavLink>
           <NavLink to={"/wishlist"}>
-            <FaRegHeart className="icon" />
-            {wishes.length > 0 ? (
-              <sub>
-                <p>{wishes.length}</p>
-              </sub>
-            ) : (
-              <></>
-            )}
+            <Badge color="success" badgeContent={wishes.length}>
+              {" "}
+              <FaRegHeart className="icon" />
+            </Badge>
           </NavLink>
-          <NavLink to={""}>
-            {" "}
-            <BsCart2 className="icon" />
+          <NavLink to={"/cart"}>
+            <Badge color="success" badgeContent={carts.length}>
+              {" "}
+              <BsCart2 className="icon" />
+            </Badge>
           </NavLink>
           <h4>Items</h4>
           <NavLink to={""}>

@@ -1,19 +1,23 @@
 import React, { memo } from "react";
-import { FaRegHeart, FaRegEye, FaHeart, FaStar } from "react-icons/fa";
+import { FaRegHeart, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GrCart } from "react-icons/gr";
+import { IoCart, IoCartOutline } from "react-icons/io5";
 import Loading from "../loading/Loading";
 import { Container } from "@mui/material";
 import { MdOutlineStar } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleToWishes } from "../../context/wishlistSlice";
-const Product = ({ data, title }) => {
+import { addToCart } from "../../context/cartSlice"; // Assuming you have defined addToCart action
+
+const Product = ({ data, title, categorys }) => {
   const dispatch = useDispatch();
   const wishes = useSelector((state) => state.wishlist.value);
   const cart = useSelector((state) => state.cart.value);
+
   if (!data) {
     return <Loading />;
   }
+
   let products = data?.map((el) => (
     <div key={el.id} className="card">
       <div className="image-container">
@@ -26,9 +30,15 @@ const Product = ({ data, title }) => {
               <FaRegHeart className="likes" />
             )}
           </button>
-          <button>
-            <GrCart />
-          </button>
+          {cart.some((c) => c.id === el.id) ? (
+            <button className="cart added">
+              <IoCart />
+            </button>
+          ) : (
+            <button onClick={() => dispatch(addToCart(el))} className="cart">
+              <IoCartOutline />
+            </button>
+          )}
         </div>
       </div>
       <div className="card__body">
@@ -51,18 +61,13 @@ const Product = ({ data, title }) => {
       </div>
     </div>
   ));
+
   return (
     <Container maxWidth="xl">
       <div className="product__title container">
         <h1>{title}</h1>
         <br />
-        <ul>
-          <li>All</li>
-          <li>Bags</li>
-          <li>Sneakers</li>
-          <li>Belt</li>
-          <li>Sunglasses</li>
-        </ul>
+        <ul>{categorys}</ul>
         <br />
       </div>
       <div className="products container">{products}</div>
