@@ -283,11 +283,11 @@ const Cart = () => {
                     </div>
                   </div>
                   <textarea></textarea>
-                  <Button onClick={handleOrder} variant="contained">
-                    Go to Payment
-                  </Button>
                 </div>
               </div>
+              <Button onClick={handleOrder} variant="contained">
+                Go to Payment
+              </Button>
             </form>
           </div>
         )}

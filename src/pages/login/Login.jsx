@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const LOGIN__URL = "https://fakestoreapi.com/";
+const LOGIN__URL = "https://fakestoreapi.com";
 
 function Login() {
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("Bekzod");
-  const [password, setPassword] = useState("876321");
+  const [username, setUsername] = useState("mor_2314");
+  const [password, setPassword] = useState("83r5^_");
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 

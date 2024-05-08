@@ -171,12 +171,13 @@
 .overlay{
     border-radius: 10px;
     position: fixed;
-    top: 100px;
-    left: 0;
-    width: 100%;
-        height: 792.84px;
-    background-color: #fff;
-    box-shadow: 0px 1px 13px 0px rgba(0, 0, 0, 0.05);
+        top: 40px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #ccc;
+        justify-content: center;
+        align-items: center;
 
     .overlay__title{
         color: rgb(64, 191, 255);
@@ -205,6 +206,9 @@
     }
     form{
         margin-left: 300px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         input{
             width: 380.99px;
             height: 20px;
@@ -216,59 +220,59 @@
             border: 1px solid #ccc;
 
         }
-        textarea{
-            width: 382.99px;
-            height: 122.52px;
-            padding: 26px 14px;
-            resize: none;
-            margin-left: 20px;
+textarea{
+    width: 382.99px;
+    height: 122.52px;
+    padding: 26px 14px;
+    resize: none;
+    margin-left: 20px;
+}
+.form{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: space-between;
+}
+.btm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.select{
+    .check{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        h2{
+            color: rgb(64, 191, 255);
+            font-size: 20px;
+            font-weight: 600;
+            line-height: 23px;
+            letter-spacing: 0px;
+            text-align: left;
+            text-transform: capitalize;
         }
-        .form{
+        .bank{
+            width: 378.72px;
+            padding: 10px;
             display: flex;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 30px;
+            background: rgb(235, 240, 255);
             justify-content: space-between;
-        }
-        .btm{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .select{
-            .check{
+            .title{
                 display: flex;
-                flex-direction: column;
-                gap: 5px;
-                h2{
-                    color: rgb(64, 191, 255);
-                    font-size: 20px;
-                    font-weight: 600;
-                    line-height: 23px;
-                    letter-spacing: 0px;
-                    text-align: left;
-                    text-transform: capitalize;
-                }
-                .bank{
-                    width: 378.72px;
-                    padding: 10px;
-                    display: flex;
-                    align-items: center;
-                    background: rgb(235, 240, 255);
-                    justify-content: space-between;
-                    .title{
-                        display: flex;
-                        align-items: center;
-                        gap: 10px;
-                        h3{
-                            white-space: nowrap;
-                            width: 135.33px;
-                        }
-                    }
+                align-items: center;
+                gap: 10px;
+                h3{
+                    white-space: nowrap;
+                    width: 135.33px;
                 }
             }
         }
     }
+}
+}
 }
 
 
