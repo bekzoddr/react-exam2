@@ -33,12 +33,12 @@ const Cart = () => {
     text += `Telefon raqami: ${phone} %0A`;
     cart.forEach((product) => {
       text += `${product.title} %0A`;
-      text += `Narxi: ${product.price} %0A`;
+      text += `Narxi: $${product.price} %0A`;
       text += `Soni: ${product.quantity} %0A`;
-      text += `Jami: ${product.price * product.quantity} %0A`;
+      text += `Jami: $${product.price * product.quantity} %0A`;
       text += `%0A%0A`;
     });
-    text += `Jami narxi: ${calculateTotalPrice()}`;
+    text += `Jami narxi: $${calculateTotalPrice()}`;
 
     let url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${text}`;
     let api = new XMLHttpRequest();
