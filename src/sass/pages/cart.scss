@@ -123,8 +123,7 @@
     .total__box{
         width: 377.1px;
         height: 310px;
-        border: 1px solid black;
-        display: flex;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;        display: flex;
         padding: 15px 20px;
         flex-direction: column;
         gap: 25px;
@@ -168,24 +167,56 @@
         }
     }
 }
-.overlay{
-    border-radius: 10px;
+.containerrr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .overlay {
+    background-color: #f9f9f9;
+    padding: 10px;
     position: fixed;
-        top: 40px;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #ccc;
-        justify-content: center;
-        align-items: center;
-
-    .overlay__title{
-        color: rgb(64, 191, 255);
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+    .btm{
         display: flex;
         align-items: center;
-        justify-content: space-around;
-        margin-top: 50px;
-        h1{
+        justify-content: center;
+        margin: 0 auto;
+    }
+    .button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px auto;
+    }
+    .nm{
+        height: 25px;
+        padding: 27px 29px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        margin-top: 2px;
+        &:focus{
+            outline: 1px solid rgb(0, 123, 255);
+        }
+    }
+    textarea{
+        width: 382.99px;
+        height: 122.52px;
+        padding: 26px 14px;
+        resize: none;
+        margin-left: 20px;
+    }
+
+.overlay__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1 {
             color: rgb(64, 191, 255);
             font-size: 32px;
             font-weight: 600;
@@ -196,86 +227,162 @@
             margin-top: 100px;
         }
         button{
-            width: 30px;
-            height: 30px;
-            color: rgb(64, 191, 255);
+            .icon{
+            color: rgb(64, 191 , 255);
             font-size: 30px;
-            background-color: transparent;
         }
-
     }
-    form{
-        margin-left: 300px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        input{
-            width: 380.99px;
-            height: 20px;
-        }
-        .nm{
-            width: 400.99px;
-            padding: 25px;
-            border-radius: 4px; 
-            border: 1px solid #ccc;
+}
 
-        }
-textarea{
-    width: 382.99px;
-    height: 122.52px;
-    padding: 26px 14px;
-    resize: none;
-    margin-left: 20px;
+.overlay__title button {
+    background: none;
+    border: none;
+    cursor: pointer;
 }
-.form{
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+.firstly,
+.secondary {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.select {
+    margin-top: 20px;
+}
+.btm {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: 30px;
     justify-content: space-between;
 }
-.btm{
+
+.select .check {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.select .check h2 {
+    color: rgb(64, 191, 255);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 23px;
+    letter-spacing: 0px;
+    text-align: left;
+    text-transform: capitalize;
+}
+
+.select .check .bank {
+    width: 378.72px;
+    padding: 10px;
     display: flex;
     align-items: center;
+    background: rgb(235, 240, 255);
     justify-content: space-between;
 }
-.select{
-    .check{
+
+.select .check .bank .title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.select .check .bank .title h3 {
+    white-space: nowrap;
+    width: 135.33px;
+}
+}
+
+@media only screen and (max-width: 1000px) {
+.btm {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .select .check {
         display: flex;
         flex-direction: column;
         gap: 5px;
-        h2{
-            color: rgb(64, 191, 255);
-            font-size: 20px;
-            font-weight: 600;
-            line-height: 23px;
-            letter-spacing: 0px;
-            text-align: left;
-            text-transform: capitalize;
+    }
+
+    .select .check h2 {
+        color: rgb(64, 191, 255);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 23px;
+        letter-spacing: 0px;
+        text-align: left;
+        text-transform: capitalize;
+    }
+
+    .select .check .bank {
+        width: 378.72px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        background: rgb(235, 240, 255);
+        justify-content: space-between;
+    }
+
+    .select .check .bank .title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .select .check .bank .title h3 {
+        white-space: nowrap;
+        width: 135.33px;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        .btm {
+            flex-direction: column;
+            gap: 20px;
         }
-        .bank{
-            width: 378.72px;
-            padding: 10px;
-            display: flex;
+
+        .select .check {
             align-items: center;
-            background: rgb(235, 240, 255);
-            justify-content: space-between;
-            .title{
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                h3{
-                    white-space: nowrap;
-                    width: 135.33px;
-                }
-            }
         }
+
+        .select .check .bank {
+            width: 100%;
+        }
+
+        .select .check .bank .title h3 {
+            width: auto;
+        }}
+    .containerrr {
+        width: 90%;
+    }
+
+    .overlay {
+        width: 90%;
     }
 }
-}
-}
 
+@media only screen and (max-width: 600px) {
 
+    .firstly,
+    .secondary {
+        flex-direction: column;
+    }
+
+    .overlay__title {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .overlay__title h1 {
+        margin-top: 10px;
+    }
+}
 
 
 // responsive
@@ -291,7 +398,7 @@ textarea{
     .cart__box.box {
         height: auto;
     }
-
+    
     .cart__box img {
         width: 100%;
         max-width: 200px;
@@ -313,7 +420,7 @@ textarea{
         align-items: flex-start;
         margin-right: 0;
     }
-
+    
     .quantity {
         width: 100%;
         margin: 0;
@@ -333,7 +440,7 @@ textarea{
     .cart__box {
         gap: 50px;
     }
-
+    
     .cart__box.box {
         height: 120px;
     }
@@ -344,3 +451,36 @@ textarea{
         max-width: 80vw;
     }
 }
+
+// <div className="quantity"><button disabled= {
+//     el.quantity <=1
+// }
+
+// onClick= {
+//     ()=>dispatch(decCart(el))
+// }
+
+// >- </button><h3><span> {
+//     el.price
+// }
+
+// </span> {
+//     el.quantity
+// }
+
+// </h3><button onClick= {
+//     ()=>dispatch(incCart(el))
+// }
+
+// >+</button></div>
+
+
+
+
+
+
+
+
+
+
+

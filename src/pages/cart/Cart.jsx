@@ -14,7 +14,6 @@ import paypal from "../../assets/images/paypal.svg";
 import bank from "../../assets/images/bank.svg";
 
 const BOT_TOKEN = "7184075474:AAFpvvne1_JAWppwweJNhGf_zVREtkQTvFs";
-const USER_ID = "1867955740";
 const CHAT_ID = "-4246362668";
 const Cart = () => {
   const cart = useSelector((state) => state.cart.value);
@@ -24,6 +23,8 @@ const Cart = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [showOverlay, setShowOverlay] = useState(false);
+  const [couponCode, setCouponCode] = useState("");
+  const [couponBenefits, setCouponBenefits] = useState(null); // State to store coupon benefits
 
   const handleOrder = () => {
     let text = "Buyurtma %0A%0A";
@@ -135,7 +136,10 @@ const Cart = () => {
   let total = 0;
 
   let itemss = cart?.map((el, index) => {
-    const subtotal = el.price * el.quantity; // Calculate subtotal for each item
+    const subtotal =
+      el.price * el.quantity * (couponCode === "Bekzod" ? 0.75 : 1); // If coupon code is Bekzod, reduce price by 25%
+
+    el.price * el.quantity * (couponCode === "Bekzod" ? 0.75 : 1); // If coupon code is Bekzod, reduce price by 25%
     total += subtotal;
   });
 
@@ -144,7 +148,17 @@ const Cart = () => {
   };
 
   const [submit, setSubmit] = useState(null);
-
+  const handleCouponRedeem = () => {
+    if (couponCode === "Bekzod") {
+      // Apply coupon code logic here
+      cart.forEach((product) => {
+        product.price *= 0.75; // 25% discount
+      });
+      setCouponBenefits("25% discount applied!");
+    } else {
+      setCouponBenefits("Invalid coupon code");
+    }
+  };
   return (
     <Container maxWidth="xl">
       {cart.length ? (
@@ -173,10 +187,17 @@ const Cart = () => {
         </div>
       )}
       <div className="bottom__actions">
-        {" "}
         <div className="send cupon">
-          <input placeholder="Voucher code" type="text" />
-          <Button variant="contained">Redeem</Button>
+          <input
+            placeholder="Voucher code"
+            type="text"
+            value={couponCode}
+            onChange={(e) => setCouponCode(e.target.value)}
+          />
+
+          <Button variant="contained" onClick={handleCouponRedeem}>
+            Redeem
+          </Button>
         </div>
         <form className="total__box">
           <div className="titles">
@@ -188,7 +209,7 @@ const Cart = () => {
             <div className="checks">
               <h3>${total}</h3>
               <h3>0</h3>
-              <h3>NO</h3>
+              {couponBenefits ? <h3>{couponBenefits}</h3> : <h3>No</h3>}
             </div>
           </div>
 
@@ -205,7 +226,7 @@ const Cart = () => {
         </form>
       </div>
 
-      <div className="container">
+      <div className="containerrr">
         {showOverlay && (
           <div className="overlay">
             <div className="overlay__title">
@@ -282,12 +303,14 @@ const Cart = () => {
                       </div>
                     </div>
                   </div>
-                  <textarea></textarea>
                 </div>
               </div>
-              <Button onClick={handleOrder} variant="contained">
-                Go to Payment
-              </Button>
+              {/* <textarea></textarea> */}
+              <div className="button">
+                <Button onClick={handleOrder} variant="contained">
+                  Go to Payment
+                </Button>
+              </div>
             </form>
           </div>
         )}
